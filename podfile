@@ -1,0 +1,43 @@
+
+platform :ios, '8.0'
+
+def common
+
+	#它只是基于 Swift 语言的 Rx 标准实现接口库，所以 RxSwift 里不包含任何 Cocoa 或者 UI方面的类。
+  pod 'RxSwift'
+	#是基于 RxSwift针对于 iOS开发的一个库，它通过 Extension 的方法给原生的比如 UI 控件添加了 Rx 的特性，使得我们更容易订阅和响应这些控件的事件。
+	pod 'RxCocoa'
+  #基于Alamofire的更高层网络请求封装抽象层
+  pod 'Moya/RxSwift'
+  #
+  pod 'RxDataSources'
+  
+	#同masonry
+	pod 'SnapKit'
+	
+  #json转model SwiftyJSON、 ObjectMapper、 HandyJSON
+  #三者具体区别可参照：https://www.jianshu.com/p/eeb6c673aeb4
+  
+	#需要在model中指明每个属性对应的字段名，弃
+  #pod 'SwiftyJSON'
+  #pod 'ObjectMapper'
+	
+  #这个就功能上类似于JSONModel，用起来还是比较顺手
+  pod 'HandyJSON'
+  
+	#图片加载
+	pod 'Kingfisher'
+  
+  #漂亮的loading动画
+  pod 'NVActivityIndicatorView'
+  
+  #---------------------------------------- Objective-C ----------------------------------------
+  pod 'MJRefresh'
+  pod 'SVProgressHUD'
+  
+  
+end
+
+target 'SwiftDemo' do
+	common
+end
