@@ -1,6 +1,10 @@
 -ProjectName
   --Classes
     --Module         //模块。包含各个模块的Model,View,Controller,Manager
+      --Model
+      --View
+      --Controller
+      --ViewModel
     --Extension            //类目。包含各种类的分类
     --Frameworks        //系统框架。包含导入的系统的框架
     --Helper           //帮助类。包含网络，数据库，归档，定位等操作类的封装和实现
