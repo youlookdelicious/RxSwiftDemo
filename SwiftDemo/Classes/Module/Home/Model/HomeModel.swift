@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct HomeModel: HandyJSON {
+struct HomeModel: Codable {
     var error: Bool?
     var results: [HomeList]?
 }
 
 
-struct HomeList: HandyJSON {
+struct HomeList: Codable {
     var _id         = ""
     var createdAt   = ""
     var desc        = ""
@@ -22,11 +22,12 @@ struct HomeList: HandyJSON {
     var source      = ""
     var type        = ""
     var url         = ""
-    var used        = ""
+    var used: Bool
     var who         = ""
 }
 
 
+// MARK: - RxDataSource
 struct HomeSection {
     var items: [Item]
 }

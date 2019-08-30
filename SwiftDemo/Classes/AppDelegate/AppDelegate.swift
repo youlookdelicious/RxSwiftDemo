@@ -8,9 +8,6 @@
 
 import UIKit
 
-@_exported import RxSwift
-@_exported import RxCocoa
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -42,6 +39,7 @@ extension AppDelegate {
         } else {
             window?.rootViewController = LoginViewController()
         }
+//        window?.rootViewController = LoginViewController()
         window?.makeKeyAndVisible()
     }
     

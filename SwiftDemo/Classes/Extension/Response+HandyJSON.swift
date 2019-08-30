@@ -30,17 +30,26 @@ extension Response {
 extension ObservableType where E == Response {
     
     public func cm_deserialize<T: HandyJSON>(_ type: T.Type) -> Observable<T> {
-        return flatMap{ response -> Observable<T> in
-            
+        
+        // flatMap: Observable -> Observable
+        return flatMap { response -> Observable<T> in
             do {
                 let mapjson = try response.mapString()
+
+                if let baseModel = JSONDeserializer<BaseModel>.deserializeFrom(json: mapjson) {
+                    if baseModel.code == 404 {
+                        throw RequestError.default("404!")
+                    }
+                } else {
+                    throw RequestError.default("数据解析失败！")
+                }
                 if let element = JSONDeserializer<T>.deserializeFrom(json: mapjson) {
                     return Observable.just(element)
                 } else {
-                    throw MoyaError.jsonMapping(response)
+                    throw RequestError.default("数据解析失败！")
                 }
-            } catch {
-                throw MoyaError.jsonMapping(response)
+            } catch let error {
+                throw error
             }
         }
     }

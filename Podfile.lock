@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
+  - Codextended (0.3.0)
   - Differentiator (3.1.0)
   - HandyJSON (5.0.0)
   - Kingfisher (4.10.1)
@@ -25,6 +26,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Codextended
   - HandyJSON
   - Kingfisher
   - MJRefresh
@@ -39,6 +41,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Codextended
     - Differentiator
     - HandyJSON
     - Kingfisher
@@ -54,6 +57,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Codextended: f384271b8694376ad766ddbf2a011efbfdcee905
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   HandyJSON: 992f2d661716d6a91de82d0056927bc7813b5770
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
@@ -67,6 +71,6 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: ab51fe9d0ea7f2383b3e14912b842eba17dfc1ae
+PODFILE CHECKSUM: 96833292dbbeba2fb8a83ba2282f37184c2543e2
 
 COCOAPODS: 1.6.1

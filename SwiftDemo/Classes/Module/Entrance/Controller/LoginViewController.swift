@@ -21,9 +21,35 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupObserver()
-        signInButton.isEnabled = true
+//        setupObserver()
         
+        let viewModel = EntranceViewModel.init(
+            input: (mobile: accountTextField.rx.text.orEmpty.asDriver(),
+                    password: passwordTextField.rx.text.orEmpty.asDriver(),
+                    Optional.none),
+            dependency: EntranceValidationService())
+        
+//        viewModel.buttonEnable
+//            .drive(onNext: { [weak self] (valid) in
+//                self?.signInButton.isEnabled = valid
+//        }, onCompleted: nil, onDisposed: nil)
+//            .disposed(by: bag)
+        self.signInButton.isEnabled = true
+        
+        signInButton.rx.tap
+            .subscribe(onNext: { (_) in
+                UserDefaults.standard.setValue(true, forKey: "loginStatus")
+                UIApplication.shared.keyWindow?.rootViewController = TabBarViewController()
+            }, onError: nil,
+               onCompleted: nil,
+               onDisposed: nil)
+            .disposed(by: bag)
+        
+    }
+    
+    @IBAction func logout(_ sender: Any) {
+        UserDefaults.standard.setValue(false, forKey: "loginStatus")
+        UIApplication.shared.keyWindow?.rootViewController = LoginViewController()
     }
     
     deinit {
@@ -94,7 +120,7 @@ extension LoginViewController {
 }
 
 
-// MARK: actions
+// MARK: - actions
 extension LoginViewController {
     
     

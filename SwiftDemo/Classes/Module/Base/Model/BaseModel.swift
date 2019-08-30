@@ -9,7 +9,10 @@
 import Foundation
 
 struct BaseModel: HandyJSON {
-    var code : String?
+    
+    var code : Int?
     var message : String?
     var data : Dictionary<String, Any>?
+    
+    
 }

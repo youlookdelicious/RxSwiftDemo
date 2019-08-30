@@ -7,21 +7,20 @@
 //
 
 import UIKit
-@_exported import SnapKit
-@_exported import RxDataSources
+
 
 class HomeViewController: BaseViewController {
 
     
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView.init(frame: .zero)
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
-    fileprivate lazy var bag = DisposeBag()
-    fileprivate lazy var homeViewModel = HomeViewModel()
+    private lazy var bag = DisposeBag()
+    private lazy var homeViewModel = HomeViewModel()
     
     let dataSource = RxTableViewSectionedReloadDataSource<HomeSection>(configureCell: {(datasource, tableView, indexPath, model) in
         let cell: TestTableViewCell = tableView.cm_dequeueReusableCell(forIndexPath: indexPath)
@@ -29,6 +28,10 @@ class HomeViewController: BaseViewController {
         cell.subTitleLabel.text = model.source
         return cell
     })
+    
+    deinit {
+        print("\(self.description) deinit")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +42,7 @@ class HomeViewController: BaseViewController {
         
     }
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -54,7 +57,7 @@ class HomeViewController: BaseViewController {
     
 }
 
-// MARK: tableView delegate & dataSource
+// MARK: - tableView delegate & dataSource
 extension HomeViewController: UITableViewDelegate {
     
 }
@@ -62,13 +65,18 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: Refreshable {
     
-    fileprivate func bindView() {
+    private func bindView() {
         
         tableView.rx.setDelegate(self).disposed(by: bag)
         
         let vmInput = HomeViewModel.HomeInput(category: .welfare)
         let vmOutput = homeViewModel.transform(input: vmInput)
         
+        /**
+         关于driver的介绍：
+         https://www.jianshu.com/p/298914bf4562
+         */
+        /// 将数据绑定到表格
         vmOutput.sections.asDriver().drive(tableView.rx.items(dataSource: dataSource)).disposed(by: bag)
         
         /// 设置刷新状态

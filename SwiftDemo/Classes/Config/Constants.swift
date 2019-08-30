@@ -9,7 +9,16 @@
 import UIKit
 
 
-//屏幕相关
+@_exported import RxDataSources
+@_exported import RxSwift
+@_exported import RxCocoa
+
+@_exported import Moya
+@_exported import HandyJSON
+@_exported import SnapKit
+
+
+// 屏幕相关
 let kScreenWidth = UIScreen.main.bounds.width
 let kScreenHeight = UIScreen.main.bounds.height
 // 导航栏高度
@@ -40,8 +49,8 @@ func kHexColor(_ HexString: String) ->UIColor {
 }
 
 
-let KCOLOR_TAB_TEXT = kHexColor("f55a5d")   //tab字体颜色
-let KCOLOR_BG_GRAY1 = kHexColor("F7F7F7")   //浅灰背景色
+let KColorTabBarText = kHexColor("f55a5d")   //tab字体颜色
+let kColorGrayF7F7F7 = kHexColor("F7F7F7")   //浅灰背景色
 
 let THEME_WHITE_TINT = UIColor.black            //返回键颜色
 let THEME_WHITE_BAR_TINT = UIColor.white        //nav背景色

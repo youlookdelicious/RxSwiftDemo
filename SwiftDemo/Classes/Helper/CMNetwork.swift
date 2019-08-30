@@ -7,8 +7,6 @@
 //
 
 import UIKit
-@_exported import Moya
-@_exported import HandyJSON
 
 ///成功
 typealias SuccessClosure = (_ baseModel : BaseModel) -> Void

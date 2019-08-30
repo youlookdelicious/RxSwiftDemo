@@ -12,3 +12,12 @@ enum THEME {
     case white
     case black
 }
+
+enum RefreshStatus {
+    case none
+    case beingHeaderRefresh
+    case endHeaderRefresh
+    case beingFooterRefresh
+    case endFooterRefresh
+    case noMoreData
+}

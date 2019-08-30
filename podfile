@@ -1,12 +1,14 @@
 
-platform :ios, '8.0'
+platform :ios, '9.0'
+
+  #    , :inhibit_warnings => true  ->  忽略warning
 
 def common
 
 	#它只是基于 Swift 语言的 Rx 标准实现接口库，所以 RxSwift 里不包含任何 Cocoa 或者 UI方面的类。
   pod 'RxSwift'
 	#是基于 RxSwift针对于 iOS开发的一个库，它通过 Extension 的方法给原生的比如 UI 控件添加了 Rx 的特性，使得我们更容易订阅和响应这些控件的事件。
-	pod 'RxCocoa'
+	pod 'RxCocoa', :inhibit_warnings => true
   #基于Alamofire的更高层网络请求封装抽象层
   pod 'Moya/RxSwift'
   #
@@ -25,6 +27,9 @@ def common
   #这个就功能上类似于JSONModel，用起来还是比较顺手
   pod 'HandyJSON'
   
+  #Codable extension，支持iOS9.0以上
+  pod 'Codextended'
+  
 	#图片加载
 	pod 'Kingfisher'
   
@@ -32,7 +37,7 @@ def common
   pod 'NVActivityIndicatorView'
   
   #---------------------------------------- Objective-C ----------------------------------------
-  pod 'MJRefresh'
+  pod 'MJRefresh', :inhibit_warnings => true
   pod 'SVProgressHUD'
   
   
@@ -40,4 +45,24 @@ end
 
 target 'SwiftDemo' do
 	common
+  
+  
+  
+end
+
+
+# The iOS deployment target is set to 6.0, but the range of supported deployment target versions for this platform is 8.0 to 12.2.99. (in target 'MJRefresh')
+
+# Xcode 10 --> deployment target 8.0
+# Xcode的最低版本为8.0，但是MJRefresh的版本设定在6.0，所以会报warning
+
+# 以下对第三方库进行了判断若DEPLOYMENT_TARGET<8.0就会切换成8.0
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 8.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '8.0'
+      end
+    end
+  end
 end

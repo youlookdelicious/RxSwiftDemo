@@ -9,15 +9,6 @@
 import Foundation
 
 
-enum RefreshStatus {
-    case none
-    case beingHeaderRefresh
-    case endHeaderRefresh
-    case beingFooterRefresh
-    case endFooterRefresh
-    case noMoreData
-}
-
 
 class HomeViewModel {
     
@@ -73,9 +64,9 @@ extension HomeViewModel: InOutTransform {
         output.requestCommond.subscribe(onNext: { [unowned self] (isReloadData) in
             
             self.index = isReloadData ? 1 : self.index + 1
-            homeProvider.rx.request(.homeList(type: input.category, size: 10, index: self.index))
+            homeProvider.rx.request(.homeList(type: input.category, size: 1, index: self.index))
                 .asObservable()
-                .cm_deserialize(HomeModel.self)
+                .cd_deserialize(HomeModel.self)
                 .subscribe({ [weak self] (event) in
                     switch event {
                     case let .next(element):
