@@ -5,12 +5,12 @@
       --View
       --Controller
       --ViewModel
-    --Extension            //类目。包含各种类的分类
+    --Extension            //
     --Frameworks        //系统框架。包含导入的系统的框架
-    --Helper           //帮助类。包含网络，数据库，归档，定位等操作类的封装和实现
-    --Utility       //工具类，一些非对象的，而是类方法调用的类
+    --Helper           //帮助类。主要放网络请求类
+    --Utility       //工具，比如封装的一些组件
     --Vendors           //第三方库。部分需要修改或者不支持cocoapod的第三方的框架引入
     --Config                //配置。包含宏定义文件，全局配置文件，全局常量文件，颜色配置文件
-    --Resources         //资源。包含plist,image,html,bundle，Localizable.strings等
-    --AppDelegate          //程序入口。包含AppDelegate,main.c,info.plist
+    --Resources         //资源文件
+    --AppDelegate          //程序入口。包含AppDelegate
 
